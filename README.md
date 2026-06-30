@@ -4,7 +4,7 @@ Turns messy, multi-source candidate data (recruiter CSV, ATS JSON, resumes, recr
 notes) into one clean, traceable canonical profile per candidate — and into any custom
 JSON shape a runtime config asks for, without code changes.
 
-See `<YourFullName>_<YourEmail>_Eightfold.pdf` for the one-page design doc (pipeline
+See `ArjavJain_arjavbarjatya@gmail.com_Eightfold.pdf` for the one-page design doc (pipeline
 breakdown, schema, merge/conflict policy, edge cases, and what was deliberately
 descoped).
 
