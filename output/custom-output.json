@@ -1,0 +1,231 @@
+[
+  {
+    "full_name": "Jane Doe",
+    "full_name_provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_notes",
+        "method": "regex_extract"
+      }
+    ],
+    "primary_email": "jane.doe@example.com",
+    "primary_email_provenance": [
+      {
+        "field": "emails[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "emails[0]",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "emails[0]",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "emails[0]",
+        "source": "recruiter_notes",
+        "method": "regex_extract"
+      }
+    ],
+    "phone": "+14155550142",
+    "phone_provenance": [
+      {
+        "field": "phones[0]",
+        "source": "recruiter_csv",
+        "method": "e164"
+      },
+      {
+        "field": "phones[0]",
+        "source": "ats_json",
+        "method": "e164"
+      },
+      {
+        "field": "phones[0]",
+        "source": "resume",
+        "method": "e164"
+      },
+      {
+        "field": "phones[0]",
+        "source": "recruiter_notes",
+        "method": "e164"
+      }
+    ],
+    "skills": [
+      "Python",
+      "PostgreSQL",
+      "AWS",
+      "Kubernetes",
+      "Docker",
+      "GraphQL"
+    ],
+    "skills_provenance": [
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "canonical_skill"
+      },
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "skills",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "skills",
+        "source": "recruiter_notes",
+        "method": "regex_extract"
+      }
+    ],
+    "current_company": "Initech",
+    "current_company_provenance": [
+      {
+        "field": "experience[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "overall_confidence": 0.99,
+    "candidate_id": "cand_0001"
+  },
+  {
+    "full_name": "John Smith",
+    "full_name_provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "primary_email": "john.smith@example.com",
+    "primary_email_provenance": [
+      {
+        "field": "emails[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "phone": "+14155550199",
+    "phone_provenance": [
+      {
+        "field": "phones[0]",
+        "source": "recruiter_csv",
+        "method": "e164"
+      }
+    ],
+    "skills": null,
+    "current_company": null,
+    "overall_confidence": 0.99,
+    "candidate_id": "cand_0002"
+  },
+  {
+    "full_name": "Priya Nair",
+    "full_name_provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "primary_email": null,
+    "phone": "+919876543210",
+    "phone_provenance": [
+      {
+        "field": "phones[0]",
+        "source": "recruiter_csv",
+        "method": "e164"
+      }
+    ],
+    "skills": null,
+    "current_company": "Globex",
+    "current_company_provenance": [
+      {
+        "field": "experience[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "overall_confidence": 0.99,
+    "candidate_id": "cand_0003"
+  },
+  {
+    "full_name": "Wei Zhang",
+    "full_name_provenance": [
+      {
+        "field": "full_name",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "ats_json",
+        "method": "field_map"
+      }
+    ],
+    "primary_email": "wei.zhang@example.com",
+    "primary_email_provenance": [
+      {
+        "field": "emails[0]",
+        "source": "ats_json",
+        "method": "field_map"
+      }
+    ],
+    "phone": null,
+    "skills": [
+      "React",
+      "TypeScript"
+    ],
+    "skills_provenance": [
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "canonical_skill"
+      },
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "field_map"
+      }
+    ],
+    "current_company": null,
+    "overall_confidence": 0.99,
+    "candidate_id": "cand_0004"
+  }
+]

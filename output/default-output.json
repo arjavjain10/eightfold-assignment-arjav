@@ -1,0 +1,381 @@
+[
+  {
+    "candidate_id": "cand_0001",
+    "full_name": "Jane Doe",
+    "emails": [
+      "jane.doe@example.com"
+    ],
+    "phones": [
+      "+14155550142"
+    ],
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": 6,
+    "skills": [
+      {
+        "name": "Python",
+        "confidence": 0.9149999999999999,
+        "sources": [
+          "ats_json",
+          "resume",
+          "recruiter_notes"
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "confidence": 0.7925,
+        "sources": [
+          "ats_json",
+          "resume"
+        ]
+      },
+      {
+        "name": "AWS",
+        "confidence": 0.7925,
+        "sources": [
+          "ats_json",
+          "resume"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "confidence": 0.6725,
+        "sources": [
+          "resume",
+          "recruiter_notes"
+        ]
+      },
+      {
+        "name": "Docker",
+        "confidence": 0.55,
+        "sources": [
+          "resume"
+        ]
+      },
+      {
+        "name": "GraphQL",
+        "confidence": 0.55,
+        "sources": [
+          "resume"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Initech",
+        "title": "Senior Backend Engineer",
+        "start": null,
+        "end": null,
+        "summary": null,
+        "source": "recruiter_csv"
+      },
+      {
+        "company": "Initech",
+        "title": "Staff Backend Engineer",
+        "start": null,
+        "end": null,
+        "summary": null,
+        "source": "ats_json"
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of Washington",
+        "degree": "Bachelor",
+        "field": "Computer Science",
+        "end_year": 2018,
+        "source": "resume"
+      }
+    ],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "years_experience",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "canonical_skill"
+      },
+      {
+        "field": "emails[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "phones[0]",
+        "source": "recruiter_csv",
+        "method": "e164"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "experience[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "emails[0]",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "phones[0]",
+        "source": "ats_json",
+        "method": "e164"
+      },
+      {
+        "field": "full_name",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "emails[0]",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "phones[0]",
+        "source": "resume",
+        "method": "e164"
+      },
+      {
+        "field": "full_name",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "skills",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "education",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "years_experience",
+        "source": "resume",
+        "method": "regex_extract"
+      },
+      {
+        "field": "emails[0]",
+        "source": "recruiter_notes",
+        "method": "regex_extract"
+      },
+      {
+        "field": "phones[0]",
+        "source": "recruiter_notes",
+        "method": "e164"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_notes",
+        "method": "regex_extract"
+      },
+      {
+        "field": "skills",
+        "source": "recruiter_notes",
+        "method": "regex_extract"
+      }
+    ],
+    "overall_confidence": 0.99
+  },
+  {
+    "candidate_id": "cand_0002",
+    "full_name": "John Smith",
+    "emails": [
+      "john.smith@example.com"
+    ],
+    "phones": [
+      "+14155550199"
+    ],
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": null,
+    "skills": null,
+    "experience": null,
+    "education": null,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "emails[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "phones[0]",
+        "source": "recruiter_csv",
+        "method": "e164"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "overall_confidence": 0.99
+  },
+  {
+    "candidate_id": "cand_0003",
+    "full_name": "Priya Nair",
+    "emails": null,
+    "phones": [
+      "+919876543210"
+    ],
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": null,
+    "skills": null,
+    "experience": [
+      {
+        "company": "Globex",
+        "title": "Data Scientist",
+        "start": null,
+        "end": null,
+        "summary": null,
+        "source": "recruiter_csv"
+      }
+    ],
+    "education": null,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "phones[0]",
+        "source": "recruiter_csv",
+        "method": "e164"
+      },
+      {
+        "field": "full_name",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      },
+      {
+        "field": "experience[0]",
+        "source": "recruiter_csv",
+        "method": "field_map"
+      }
+    ],
+    "overall_confidence": 0.99
+  },
+  {
+    "candidate_id": "cand_0004",
+    "full_name": "Wei Zhang",
+    "emails": [
+      "wei.zhang@example.com"
+    ],
+    "phones": null,
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "React",
+        "confidence": 0.6,
+        "sources": [
+          "ats_json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "confidence": 0.6,
+        "sources": [
+          "ats_json"
+        ]
+      }
+    ],
+    "experience": null,
+    "education": null,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "canonical_skill"
+      },
+      {
+        "field": "emails[0]",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "full_name",
+        "source": "ats_json",
+        "method": "field_map"
+      },
+      {
+        "field": "skills",
+        "source": "ats_json",
+        "method": "field_map"
+      }
+    ],
+    "overall_confidence": 0.99
+  }
+]

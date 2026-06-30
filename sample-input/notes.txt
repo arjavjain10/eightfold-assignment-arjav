@@ -1,0 +1,5 @@
+Candidate: Jane Doe
+Phone screen 6/12. Reachable at jane.doe@example.com or 415.555.0142.
+Strong in Python and distributed systems, knows Kubernetes well. Experience with AWS.
+Comes across confident, good communicator. Currently at Initech, open to relocating.
+Recruiter: M. Alvarez

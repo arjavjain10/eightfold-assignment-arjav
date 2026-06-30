@@ -1,0 +1,22 @@
+{
+  "candidates": [
+    {
+      "applicant_name": "Jane Doe",
+      "contact_email": "jane.doe@example.com",
+      "mobile": "4155550142",
+      "applied_title": "Staff Backend Engineer",
+      "employer": "Initech",
+      "skill_tags": ["python", "postgresql", "aws"]
+    },
+    {
+      "candidate_name": "Wei Zhang",
+      "email_address": "wei.zhang@example.com",
+      "phone_number": "not-a-real-phone",
+      "job_title": "Frontend Engineer",
+      "skill_tags": ["react", "typescript"]
+    },
+    {
+      "note": "this blob has no name or email field at all and should be skipped"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Candidate Data Transformer</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #161a21; --border: #262b35; --text: #e6e9ef;
+    --muted: #8a93a3; --accent: #5b8def; --good: #4caf7d; --bad: #e0626a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { padding: 28px 32px 8px; }
+  header h1 { font-size: 20px; margin: 0 0 4px; }
+  header p { color: var(--muted); margin: 0; font-size: 14px; }
+  main { display: grid; grid-template-columns: 360px 1fr; gap: 20px; padding: 20px 32px 40px; max-width: 1280px; }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .panel h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 14px; }
+  label { display: block; font-size: 13px; margin: 14px 0 6px; color: var(--text); }
+  input[type=file] { width: 100%; font-size: 12px; color: var(--muted); }
+  textarea { width: 100%; min-height: 110px; background: #0d0f14; color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-family: ui-monospace, monospace; font-size: 12px; }
+  button { background: var(--accent); color: white; border: none; border-radius: 6px; padding: 10px 16px; font-size: 14px; cursor: pointer; margin-top: 16px; width: 100%; }
+  button:hover { opacity: .9; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .tab { padding: 6px 12px; border-radius: 6px; background: #0d0f14; border: 1px solid var(--border); cursor: pointer; font-size: 13px; color: var(--muted); }
+  .tab.active { color: var(--text); border-color: var(--accent); }
+  pre { background: #0d0f14; border: 1px solid var(--border); border-radius: 8px; padding: 14px; overflow: auto; max-height: 70vh; font-size: 12px; line-height: 1.5; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+  .badge.good { background: rgba(76,175,125,.15); color: var(--good); }
+  .badge.bad { background: rgba(224,98,106,.15); color: var(--bad); }
+  .warnings { margin-top: 12px; font-size: 12px; color: var(--muted); }
+  .warnings li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Multi-Source Candidate Data Transformer</h1>
+  <p>Upload sources, optionally provide a runtime output config, and run the pipeline. The CLI is the primary surface — this is a thin viewer on top.</p>
+</header>
+<main>
+  <section class="panel">
+    <h2>Inputs</h2>
+    <label>Recruiter CSV (structured)</label>
+    <input type="file" id="csv" accept=".csv" />
+    <label>ATS JSON blob (structured, optional)</label>
+    <input type="file" id="ats" accept=".json" />
+    <label>Resume (unstructured) — PDF or DOCX</label>
+    <input type="file" id="resume" accept=".pdf,.docx" />
+    <label>Recruiter notes (unstructured, optional) — .txt</label>
+    <input type="file" id="notes" accept=".txt" />
+    <label>Custom output config (optional, JSON)</label>
+    <textarea id="config" placeholder='{"fields":[{"path":"full_name","type":"string","required":true}], "include_confidence": true, "on_missing": "null"}'></textarea>
+    <button id="run">Run pipeline</button>
+  </section>
+  <section class="panel">
+    <h2>Output <span id="status"></span></h2>
+    <div class="tabs">
+      <div class="tab active" data-tab="default">Default schema</div>
+      <div class="tab" data-tab="custom">Custom schema</div>
+    </div>
+    <pre id="output">Run the pipeline to see output here.</pre>
+    <ul class="warnings" id="warnings"></ul>
+  </section>
+</main>
+<script>
+  let lastResult = null;
+  let activeTab = "default";
+
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    activeTab = t.dataset.tab;
+    render();
+  }));
+
+  function render() {
+    if (!lastResult) return;
+    const data = activeTab === "default" ? lastResult.defaultOutput : lastResult.customOutput;
+    document.getElementById("output").textContent = data ? JSON.stringify(data, null, 2) : "No custom config was provided.";
+    const warningsEl = document.getElementById("warnings");
+    warningsEl.innerHTML = (lastResult.warnings || []).map(w => `<li>⚠ ${w}</li>`).join("");
+    const v = lastResult.validation;
+    const allValid = v.default.every(x => x.valid) && (!v.custom || v.custom.every(x => x.valid));
+    document.getElementById("status").innerHTML = `<span class="badge ${allValid ? "good" : "bad"}">${allValid ? "valid" : "validation errors"}</span>`;
+  }
+
+  document.getElementById("run").addEventListener("click", async () => {
+    const fd = new FormData();
+    const add = (id) => { const f = document.getElementById(id).files[0]; if (f) fd.append(id, f); };
+    add("csv"); add("ats"); add("resume"); add("notes");
+    const cfg = document.getElementById("config").value.trim();
+    if (cfg) fd.append("config", cfg);
+
+    document.getElementById("output").textContent = "Running…";
+    try {
+      const resp = await fetch("/api/run", { method: "POST", body: fd });
+      const json = await resp.json();
+      if (!resp.ok) throw new Error(json.error || "Unknown error");
+      lastResult = json;
+      render();
+    } catch (err) {
+      document.getElementById("output").textContent = "Error: " + err.message;
+    }
+  });
+</script>
+</body>
+</html>
