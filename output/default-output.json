@@ -32,15 +32,16 @@
         ]
       },
       {
-        "name": "PostgreSQL",
-        "confidence": 0.7925,
+        "name": "AWS",
+        "confidence": 0.9149999999999999,
         "sources": [
           "ats_json",
-          "resume"
+          "resume",
+          "recruiter_notes"
         ]
       },
       {
-        "name": "AWS",
+        "name": "PostgreSQL",
         "confidence": 0.7925,
         "sources": [
           "ats_json",

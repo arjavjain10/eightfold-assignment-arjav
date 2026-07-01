@@ -41,6 +41,18 @@ export function extractRecruiterNotes(filePath: string): ExtractedRecord[] {
     const candidate = m[1].split(/[,.;]|\s+\band\b|\s+\bwell\b/i)[0].trim();
     if (candidate) skillsFound.add(canonicalizeSkill(candidate));
   }
+
+  const SKILL_KEYWORDS = [
+    "javascript", "typescript", "python", "java", "go", "golang", "react", "node", "node.js",
+    "sql", "nosql", "postgresql", "mongodb", "aws", "gcp", "azure", "docker", "kubernetes", "k8s",
+    "machine learning", "ml", "ai", "c++", "c#", "rust", "graphql", "rest", "kafka", "spark",
+  ];
+  const lowerText = text.toLowerCase();
+  for (const kw of SKILL_KEYWORDS) {
+    const re = new RegExp(`(^|[^a-z])${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^a-z]|$)`, "i");
+    if (re.test(lowerText)) skillsFound.add(canonicalizeSkill(kw));
+  }
+
   const skills = [...skillsFound].map((name) => ({ name, confidence: 0.35, sources: ["recruiter_notes" as const] }));
   if (skills.length) provenance.push({ field: "skills", source: "recruiter_notes", method: "regex_extract" });
 

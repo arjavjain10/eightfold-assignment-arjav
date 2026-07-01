@@ -10,7 +10,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const uploadDir = path.join(__dirname, "..", "tmp-uploads");
 mkdirSync(uploadDir, { recursive: true });
 
-const upload = multer({ dest: uploadDir });
+const storage = multer.diskStorage({
+  destination: uploadDir,
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `${file.fieldname}-${Date.now()}-${Math.round(Math.random() * 1e6)}${ext}`);
+  },
+});
+const upload = multer({ storage });
 const app = express();
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(express.json());
